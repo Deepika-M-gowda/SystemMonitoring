@@ -1,0 +1,54 @@
+Step 1: Update the System 
+You need to update the ubuntu current repository server by using the given command.
+sudo apt-get update
+Step 2: Install Prometheus 
+You need to update the ubuntu repository and use the following command to install prometheus packages.
+sudo apt-get update
+sudo apt-get install prometheus prometheus-node-exporter prometheus-pushgateway prometheus-alertmanager -y
+Here we are installing all the required package for the prometheus along with alertmanager, node-expoter and pushgateway.
+Get the prometheus service status by using the given command.
+sudo systemctl status prometheus
+Step 3: UFW Rules
+After installation of the packages, We need to open the required port by using the command.
+sudo ufw status
+sudo ufw allow 9090
+Step 4: Accessing Web Panel
+You need to open the browser with http://localhost:9090 or http://IP_Address:9090 
+Verifying the node up or not just put the query up execute So then you will get the up and running  node details.
+Step 5: Download Grafana
+Lets configure Grafana with prometheus by using the given command.
+cd /tmp
+sudo wget https://dl.grafana.com/oss/release/grafana_5.4.3_amd64.deb
+Step 6: Installing Dependencies 
+After this you need to install some dependencies.
+sudo apt-get install -y adduser libfontconfig
+Step 7: Installing Grafana
+sudo dpkg -i grafana_5.4.3_amd64.deb
+Step 8: Controlling Service
+by default grafana service you will get in stop state, You need to verify the grafana service and start it on boot by using the following command. 
+Use this given command to get the grafana service.
+sudo systemctl status grafana-server
+To start garfana service on boot, Use the following command.
+sudo systemctl enable grafana-server
+To start the grafana service execute the given command.
+sudo systemctl start grafana-server
+Step 9: UFW Rules for Grafana
+Once you get the service So then you need to open the port 3000 in UFW or your firewall.
+sudo ufw status
+sudo ufw allow 3000
+Step 10: Setup Grafana GUI Mode
+Once you get the service So then you need to open the port 3000 in UFW or your firewall.
+http://localhost:3000 Or http://IP_address:3000
+Here you need to use he default username and password to login and reset the password.
+Username - admin
+Password  - admin
+After that you need to click on Add data source button after that you need to click on prometheus data source
+Select Data source prometheus.
+Put the prometheus source http://localhost:3000
+ Step 11: Setup Grafana GUI Mode
+Now you need to import the pre-define system metric dashboard by using the given id, Follow the given step.
+Its time import predefine dashbard, click on Dashboard button after that you should get the import button click on it.
+for basic system monitoring, I am using CPU Utilization Details (Cores) [ID: 10204] custom dashboard. Copy the dashboard ID from here.
+When you click on load So then you need to select prometheus as a data source as well.
+Now should get the pre-define grafana dashboard, Here you will the all the information about the basic system hardware utilization.
+
